@@ -30,8 +30,6 @@ Prerequisites: Docker
 - (dev optional) `SMEE_SOURCE=<your smee.io URL>`
 - (prod optional) `GITHUB_WEBHOOK_SECRET=<webhook secret>`
 
-Tip: `GITHUB_PRIVATE_KEY` ถ้าใส่ใน `.env` มักต้องแทน newline เป็น `\n` และครอบด้วย quotes เช่น:
-`GITHUB_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"`
 
 2) รัน:
 - `docker compose up --build`

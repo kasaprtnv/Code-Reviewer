@@ -1,28 +1,27 @@
 services:
+  nginx-proxy-manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
+    environment:
+      TZ: 'Thai/Bangkok'
+    ports:
+      - '81:81'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+
   api:
     build: .
-    ports: ["3000:3000"]
     env_file:
       - .env
     environment:
-      DATABASE_URL: postgresql://user:pass@db:5432/reviewer
       REDIS_URL: redis://redis:6379
     depends_on:
       - redis
-    # depends_on: [db, redis]
-
-  # db:
-  #   image: postgres:16-alpine
-  #   environment:
-  #     POSTGRES_DB: reviewer
-  #     POSTGRES_USER: user
-  #     POSTGRES_PASSWORD: pass
-  #   volumes:
-  #     - pgdata:/var/lib/postgresql/data
 
   redis:
     image: redis:7-alpine
-    ports: ["6379:6379"]
 
 volumes:
   pgdata:
+
