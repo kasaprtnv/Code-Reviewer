@@ -37,6 +37,7 @@ export class AIService {
     const response: ChatCompletion = await this.client.chat.completions.create({
       model: process.env.OPENAI_MODEL || 'gpt-4o',
       response_format: { type: 'json_object' },
+      temperature: Number.parseFloat(process.env.REVIEW_TEMPERATURE ?? '0.2'),
       messages: [
         {
           role: 'system',
